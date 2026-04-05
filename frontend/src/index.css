@@ -1,0 +1,301 @@
+/* @import "tailwindcss";
+
+.cardBox {
+  @apply w-24 h-36 sm:w-28 sm:h-44 md:w-32 md:h-48 
+  bg-[#020220] border border-blue-900 rounded-2xl 
+  overflow-hidden cursor-pointer transition-all duration-300;
+}
+
+.cardBox:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: white;
+  box-shadow: 0 0 25px #2563eb;
+}
+
+.nextBtn {
+  @apply px-12 py-2 bg-white text-black font-semibold 
+  rounded-full text-lg transition-all duration-300;
+} */
+
+
+
+
+@import "tailwindcss";
+
+/* Card Styles */
+.cardBox {
+  @apply w-24 h-36 sm:w-28 sm:h-44 md:w-32 md:h-48 
+  bg-[#020220] border border-blue-900 rounded-2xl 
+  overflow-hidden cursor-pointer transition-all duration-300;
+  position: relative;
+  isolation: isolate;
+}
+
+.cardBox:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: white;
+  box-shadow: 0 0 25px #2563eb;
+}
+
+/* Card Image */
+.cardBox img {
+  @apply w-full h-full object-cover transition-transform duration-500;
+}
+
+.cardBox:hover img {
+  transform: scale(1.1);
+}
+
+/* Card Overlay Effect */
+.cardBox::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(37, 99, 235, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cardBox:hover::after {
+  opacity: 1;
+}
+
+/* Card Selected State */
+.cardBox.selected {
+  border: 3px solid white;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
+  transform: scale(1.02);
+}
+
+/* Next Button */
+.nextBtn {
+  @apply px-12 py-2 bg-white text-black font-semibold 
+  rounded-full text-lg transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.nextBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.nextBtn:hover::before {
+  left: 100%;
+}
+
+.nextBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.5);
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+}
+
+.nextBtn:active {
+  transform: translateY(0);
+}
+
+/* Upload Card */
+.uploadCard {
+  @apply w-[70px] h-[140px] lg:w-[150px] lg:h-[250px]
+  bg-[#020220] border-2 border-dashed border-[#0000ff62]
+  rounded-2xl flex items-center justify-center cursor-pointer
+  transition-all duration-300;
+  position: relative;
+}
+
+.uploadCard:hover {
+  border-color: white;
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 0 25px #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+/* Upload Icon Animation */
+.uploadIcon {
+  @apply text-white w-[25px] h-[25px] lg:w-[35px] lg:h-[35px];
+  transition: transform 0.3s ease;
+}
+
+.uploadCard:hover .uploadIcon {
+  transform: scale(1.2) rotate(90deg);
+}
+
+/* Image Preview */
+.imagePreview {
+  @apply w-full h-full object-cover rounded-2xl;
+  transition: transform 0.3s ease;
+}
+
+.uploadCard:hover .imagePreview {
+  transform: scale(1.05);
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+  }
+}
+
+/* Animation Classes */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(37, 99, 235, 0.3);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass Morphism Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
+
+/* Responsive Container */
+.container-responsive {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Grid Layout */
+.grid-responsive {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center;
+}
+
+/* Button Hover Effects */
+.btn-hover-effect {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-hover-effect:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Card Selection Animation */
+@keyframes selectPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
+
+.card-selected {
+  animation: selectPulse 0.5s ease-out;
+}
